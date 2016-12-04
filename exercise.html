@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exercise</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+  $(function(){
+    $.ajax({
+      url: "http://140.134.26.71:58080/web-prog/Hotels",
+      type: "GET",
+      dataType: "json",
+      
+      success: function(data) {
+        var items = data.Infos.Info;
+        var hotel_name="飯店名稱";
+        for(var i = 0; i < items.length; i++){
+          var name = items[i].Name;
+          var web=items[i].Website;
+          var imgURL = items[i].Picture1;
+          var imgURL2 = items[i].Picture2;
+          var imgURL3 = items[i].Picture3;
+          var  Picdescribe1=items[i].Picdescribe1;
+          var  Picdescribe2=items[i].Picdescribe2;
+          var  Picdescribe3=items[i].Picdescribe3;
+          var Serviceinfo=items[i].Serviceinfo;
+          $("#attractions").append(
+           
+           
+           
+           
+           
+           
+           
+             '<tr>'+
+           
+            '<td class="name">' + '<a href="'+web+'">'+items[i].Name + '</td>'  +
+         
+           '<td>'+'<img src="'+imgURL+'" width="200" title="'+Picdescribe1+'">'+'</td>' +
+           
+           '<td>'+'<img src="'+imgURL2+'" width="200"title="'+Picdescribe2+'">'+'</td>' +
+           
+           '<td>'+'<img src="'+imgURL3+'" width="200"title="'+Picdescribe3+'">'+'</td>'+
+           
+           '<td class="Serviceinfo">' +items[i].Serviceinfo+ '</td>'  +
+            '</tr>'
+            
+            
+          
+          )
+        }
+      },
+      error: function() {
+        //處理錯誤
+      }
+    });
+  });
+</script>
+<style>
+td.name
+{
+     vertical-align:middle;
+      font-size:medium;
+      line-height: 100px;
+      text-align: center;
+      background:#E8CCFF;
+      font-weight:bold;
+      width="200";
+}
+td.Serviceinfo
+{
+     vertical-align:middle;
+      font-size:medium;
+      line-height: 100px;
+      text-align: center;     
+      font-weight:bold;
+      background:#FFB7DD;
+      width="200";
+}
+</style>
+</head>
+<body>
+<div id="attractions"></div>
+</body>
+</html>
